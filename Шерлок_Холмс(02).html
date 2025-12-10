@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шерлок Холмс: Полное детективное досье</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+    /* Секция биографии */
+
+.biography-section {
+    padding: 100px 0;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 60px;
+}
+
+.biography-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.bio-image {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bio-img-frame {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 30px;
+    border: 8px solid #2c1810;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #d4af37, #f5f1e8, #d4af37);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    animation: pulseBorder 3s infinite;
+}
+
+@keyframes pulseBorder {
+    0% { border-color: #2c1810; }
+    50% { border-color: #d4af37; }
+    100% { border-color: #2c1810; }
+}
+
+.holmes-portrait {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s ease;
+    filter: sepia(0.4) contrast(1.1) brightness(0.95);
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    box-shadow:
+        inset 0 0 20px rgba(44, 24, 16, 0.3),
+        0 0 30px rgba(0, 0, 0, 0.2);
+}
+/* Цитатный слайдер */
+.quote-slider {
+    max-width: 600px;
+    margin: 30px auto 0;
+    position: relative;
+    background-color: #f9f7f0;
+    border-radius: 12px;
+    padding: 25px 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-left: 5px solid #d4af37;
+    overflow: hidden;
+}
+
+.quote-slides {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+}
+
+.quote-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s ease;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #5a4a3a;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.quote-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.quote-slide p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.quote-author {
+    text-align: right;
+    font-weight: bold;
+    font-style: normal;
+    color: #2c1810;
+    font-size: 1rem;
+}
+
+/* Навигация слайдера */
+.quote-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.quote-prev, .quote-next {
+    background: #d4af37;
+    color: #2c1810;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+}
+
+.quote-prev:hover, .quote-next:hover {
+    background: #2c1810;
+    color: #d4af37;
+    transform: scale(1.1);
+}
+
+.quote-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e0d6c2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #d4af37;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background-color: #b8941f;
+}
+
+/* Адаптивность слайдера */
+@media (max-width: 768px) {
+    .quote-slider {
+        padding: 20px 30px;
+    }
+
+    .quote-slides {
+        height: 140px;
+    }
+
+    .quote-slide {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-slider {
+        padding: 15px 20px;
+    }
+
+    .quote-slides {
+        height: 160px;
+    }
+
+    .quote-slide {
+        font-size: 1rem;
+    }
+
+    .quote-author {
+        font-size: 0.9rem;
+    }
+}
+/* Эффект при наведении */
+.bio-img-frame:hover .holmes-portrait {
+    transform: scale(1.05);
+    filter: sepia(0.2) contrast(1.15) brightness(1.05);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow:
+        inset 0 0 30px rgba(44, 24, 16, 0.4),
+        0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+/* Наложение с иконкой лупы */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 24, 16, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.image-overlay i {
+    font-size: 3.5rem;
+    color: #d4af37;
+    background: rgba(44, 24, 16, 0.8);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.bio-img-frame:hover .image-overlay {
+    opacity: 1;
+}
+
+.bio-img-frame:hover .image-overlay i {
+    transform: scale(1);
+}
+
+/* Адаптивные стили для изображения */
+@media (max-width: 768px) {
+    .bio-img-frame {
+        width: 200px;
+        height: 200px;
+    }
+
+    .image-overlay i {
+        font-size: 2.5rem;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bio-img-frame {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.bio-quote {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #f9f7f0;
+    border-radius: 12px;
+    border-left: 5px solid #d4af37;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #5a4a3a;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.quote-author {
+    text-align: right;
+    margin-top: 15px;
+    font-weight: bold;
+    font-style: normal;
+    color: #2c1810;
+}
+
+.bio-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bio-timeline:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #d4af37, #2c1810);
+}
+
+.bio-period {
+    display: flex;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.5s;
+}
+
+.bio-period.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.bio-year {
+    min-width: 120px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #d4af37;
+    padding-right: 30px;
+    text-align: right;
+    position: relative;
+}
+
+.bio-year:after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background-color: #d4af37;
+    border: 4px solid #f5f1e8;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #2c1810;
+    z-index: 10;
+}
+
+.bio-event {
+    flex: 1;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e0d6c2;
+}
+
+.bio-event h3 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2c1810;
+}
+
+.bio-event p {
+    color: #5a4a3a;
+    line-height: 1.7;
+}
+
+.bio-facts {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 3px solid #d4af37;
+}
+
+.bio-facts h3 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c1810;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.fact-card {
+    background-color: #f9f7f0;
+    padding: 25px;
+    border-radius: 12px;
+    transition: all 0.3s;
+    border-top: 4px solid #2c1810;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fact-card.animated {
+    animation: fadeInUp 0.8s forwards;
+}
+
+.fact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    background-color: #2c1810;
+    color: #f5f1e8;
+}
+
+.fact-card:hover .fact-icon {
+    color: #d4af37;
+    transform: scale(1.1);
+}
+
+.fact-card:hover h4 {
+    color: #d4af37;
+}
+
+.fact-card:hover p {
+    color: #f5f1e8;
+}
+
+.fact-icon {
+    font-size: 2.5rem;
+    color: #d4af37;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.fact-card h4 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #2c1810;
+    transition: all 0.3s;
+}
+
+.fact-card p {
+    color: #5a4a3a;
+    line-height: 1.6;
+    transition: all 0.3s;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f5f1e8;
+            color: #2c1810;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4c4a8' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка с улучшенной навигацией */
+        header {
+            background-color: rgba(44, 24, 16, 0.95);
+            color: #f5f1e8;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #d4af37;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo-text h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: #f5f1e8;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #d4af37;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: #d4af37;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #f5f1e8;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Герой секция с анимацией */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(rgba(44, 24, 16, 0.85), rgba(44, 24, 16, 0.9)), url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #f5f1e8;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            animation: backgroundShift 30s infinite alternate;
+        }
+        
+        @keyframes backgroundShift {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(0.5deg); }
+        }
+        
+        .hero h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #2c1810;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.5s;
+        }
+        
+        .btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #2c1810;
+            transition: all 0.3s;
+            z-index: -1;
+        }
+        
+        .btn:hover:after {
+            left: 0;
+        }
+        
+        .btn:hover {
+            color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c1810;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section-title.animated {
+            animation: slideUp 0.8s forwards;
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #d4af37;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Секция навыков с улучшенными карточками */
+        .infographic-section {
+            padding: 100px 0;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .skill-card {
+            background-color: #f9f7f0;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s;
+            border-left: 4px solid #d4af37;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #2c1810);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        
+        .skill-card:hover:before {
+            transform: translateX(0);
+        }
+        
+        .skill-card.animated {
+            animation: fadeInCard 0.8s forwards;
+        }
+        
+        @keyframes fadeInCard {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .skill-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #2c1810;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-card h3 i {
+            color: #d4af37;
+        }
+        
+        .skill-level {
+            height: 12px;
+            background-color: #e0d6c2;
+            border-radius: 6px;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #b8941f);
+            border-radius: 6px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-bar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .skill-details {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #5a4a3a;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, margin-top 0.5s ease;
+        }
+        
+        .skill-card.active .skill-details {
+            max-height: 300px;
+            margin-top: 20px;
+        }
+        
+        .skill-percentage {
+            position: absolute;
+            right: 10px;
+            top: -25px;
+            font-weight: bold;
+            color: #2c1810;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .skill-card:hover .skill-percentage {
+            opacity: 1;
+        }
+        
+        /* Статистика с улучшенной анимацией */
+        .cases-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f7f0;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+        }
+        
+        .stat-item.animated {
+            animation: fadeInCard 0.8s forwards;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background-color: #2c1810;
+            color: #f5f1e8;
+        }
+        
+        .stat-item:hover .stat-number {
+            color: #d4af37;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .stat-label {
+            font-size: 1.3rem;
+            color: #2c1810;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .stat-item:hover .stat-label {
+            color: #f5f1e8;
+        }
+        
+        /* Остальные секции с аналогичными улучшениями */
+        .methods-section, .timeline-section, .map-section, 
+        .artifacts-section, .interactive-section, .characters-section {
+            padding: 100px 0;
+        }
+        
+        /* Методы дедукции */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .method-card {
+            background-color: #f9f7f0;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s;
+            border-top: 4px solid #2c1810;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+        }
+        
+        .method-card.animated {
+            animation: fadeInCard 0.8s forwards;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            background-color: #2c1810;
+            color: #f5f1e8;
+        }
+        
+        .method-card:hover .method-icon {
+            color: #d4af37;
+            transform: scale(1.2);
+        }
+        
+        .method-icon {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 25px;
+            transition: all 0.4s;
+        }
+        
+        .method-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Хронология с улучшенным дизайном */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #2c1810);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+            width: 45%;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        
+        .timeline-item:nth-child(even) {
+            transform: translateX(50px);
+        }
+        
+        .timeline-item.animated {
+            animation: slideInHorizontal 0.8s forwards;
+        }
+        
+        @keyframes slideInHorizontal {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        .timeline-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #2c1810;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            background-color: #f9f7f0;
+        }
+        
+        .timeline-year {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.7rem;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #2c1810;
+            font-weight: 600;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d4af37;
+            border: 5px solid #f5f1e8;
+            box-shadow: 0 0 0 3px #2c1810;
+            transition: all 0.3s;
+        }
+        
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.3);
+            background-color: #2c1810;
+            box-shadow: 0 0 0 3px #d4af37;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -56px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -56px;
+        }
+        
+        /* Интерактивная карта Лондона */
+        .map-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f9f7f0;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .map-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #2c1810;
+        }
+        
+        .london-map {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 15px;
+            height: 500px;
+            background-color: #e0d6c2;
+            padding: 25px;
+            border-radius: 10px;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+        
+        .map-location {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-location:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .map-location:hover:before {
+            animation: shimmer 1.5s;
+        }
+        
+        .map-location:hover {
+            background-color: #d4af37;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: #2c1810;
+            z-index: 10;
+        }
+        
+        .map-location.active {
+            background-color: #2c1810;
+            color: #f5f1e8;
+            border-color: #d4af37;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .location-info {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .location-info.active {
+            display: block;
+        }
+        
+        .location-info:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.05;
+            border-radius: 0 0 0 100%;
+        }
+        
+        .location-info h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2c1810;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Дедуктивная игра с улучшенным дизайном */
+        .deduction-game {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deduction-game:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #2c1810, #d4af37);
+            animation: progressLine 3s infinite linear;
+        }
+        
+        @keyframes progressLine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .game-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #2c1810;
+            text-align: center;
+        }
+        
+        .clue-container {
+            background-color: #f9f7f0;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #2c1810;
+            position: relative;
+        }
+        
+        .clue-container:before {
+            content: 'УЛИКИ';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            background: #2c1810;
+            color: #f5f1e8;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .clue-text {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .option {
+            padding: 20px;
+            background-color: #f5f1e8;
+            border: 3px solid #d4af37;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .option:hover:before {
+            animation: shimmer 1.5s;
+        }
+        
+        .option:hover {
+            background-color: #d4af37;
+            color: #2c1810;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .option.selected {
+            background-color: #2c1810;
+            color: #f5f1e8;
+            border-color: #2c1810;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .option-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #d4af37;
+            color: #2c1810;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .solution-btn {
+            display: block;
+            margin: 0 auto;
+            background-color: #2c1810;
+            color: #f5f1e8;
+            border: 3px solid #2c1810;
+            font-size: 1.1rem;
+            padding: 18px 45px;
+            transition: all 0.3s;
+        }
+        
+        .solution-btn:hover {
+            background-color: transparent;
+            color: #2c1810;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .solution-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            display: none;
+            animation: fadeIn 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: skewX(20deg);
+        }
+        
+        .result.correct {
+            background-color: rgba(46, 125, 50, 0.15);
+            border: 3px solid #2e7d32;
+            color: #1b5e20;
+        }
+        
+        .result.incorrect {
+            background-color: rgba(198, 40, 40, 0.15);
+            border: 3px solid #c62828;
+            color: #b71c1c;
+        }
+        
+        /* Прогресс-бар изучения сайта */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #2c1810);
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Кнопка "Наверх" */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #2c1810;
+            color: #d4af37;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-top-btn:hover {
+            background-color: #d4af37;
+            color: #2c1810;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .methods-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav a {
+                display: block;
+                padding: 15px;
+                background-color: rgba(255,255,255,0.05);
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 70px);
+                margin-left: 70px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: -48px;
+                right: auto;
+            }
+            
+            .london-map {
+                height: 400px;
+            }
+            
+            .deduction-game {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .skill-card, .stat-item, .method-card {
+                padding: 25px;
+            }
+            
+            .london-map {
+                height: 350px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .map-container, .deduction-game {
+                padding: 20px;
+            }
+            
+            .scroll-top-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        /* Стили для формы обратной связи */
+.feedback-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 2px solid #e0d6c2;
+    border-radius: 8px;
+    background-color: #f9f7f0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.95rem;
+    color: #2c1810;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5a4a3a;
+    font-size: 1rem;
+}
+
+.form-group textarea + i {
+    top: 20px;
+    transform: none;
+}
+
+.feedback-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 20px;
+    background-color: #2c1810;
+    color: #f5f1e8;
+    border: 2px solid #2c1810;
+    font-size: 1rem;
+}
+
+.feedback-btn:hover {
+    background-color: #d4af37;
+    color: #2c1810;
+    border-color: #d4af37;
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.form-message.success {
+    display: block;
+    background-color: rgba(46, 125, 50, 0.15);
+    border: 1px solid #2e7d32;
+    color: #1b5e20;
+}
+
+.form-message.error {
+    display: block;
+    background-color: rgba(198, 40, 40, 0.15);
+    border: 1px solid #c62828;
+    color: #b71c1c;
+}
+
+/* Анимация для формы */
+@keyframes formShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.form-error {
+    animation: formShake 0.5s;
+    border-color: #c62828 !important;
+}
+    </style>
+</head>
+<body>
+    <!-- Прогресс-бар прокрутки -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Кнопка "Наверх" -->
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-content">
+            <div class="logo" id="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Шерлок Холмс</h1>
+                    <p>Полное детективное досье</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#skills"><i class="fas fa-brain"></i> Навыки</a></li>
+                    <li><a href="#methods"><i class="fas fa-search"></i> Методы</a></li>
+                    <li><a href="#timeline"><i class="fas fa-history"></i> Хронология</a></li>
+                    <li><a href="#map"><i class="fas fa-map-marked-alt"></i> Лондон</a></li>
+                    <li><a href="#game"><i class="fas fa-puzzle-piece"></i> Дедукция</a></li>
+                    <li><a href="#characters"><i class="fas fa-users"></i> Персонажи</a></li>
+                    <li><a href="#footer"><i class="fas fa-comments"></i> Обратная связь</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+   <section class="hero">
+    <div class="container">
+        <h2>Элементарно, мой дорогой Ватсон!</h2>
+        <p>Добро пожаловать в самое полное интерактивное досье величайшего детектива всех времен. Исследуйте навыки, методы дедукции, хронологию дел и самые известные места Лондона, связанные с Шерлоком Холмсом. Погрузитесь в атмосферу викторианской Англии и проверьте свои дедуктивные способности!</p>
+        <a href="#biography" class="btn" id="startInvestigationBtn">Начать расследование</a>
+    </div>
+</section>
+<section id="biography" class="biography-section">
+    <div class="container">
+        <h2 class="section-title">Биография Шерлока Холмса</h2>
+        <div class="biography-container">
+<div class="bio-image">
+    <div class="bio-img-frame">
+        <img src="https://avatars.mds.yandex.net/i?id=6dbcf438e9a6b9f3a8b1be8594de0abe72a4c589-5540708-images-thumbs&n=13"
+             alt="Шерлок Холмс"
+             class="holmes-portrait">
+        <div class="image-overlay">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <!-- Цитатный слайдер -->
+    <div class="quote-slider">
+        <div class="quote-slides">
+            <div class="quote-slide active">
+                <p>"Мой мозг бунтует против застоя. Дайте мне проблемы, дайте мне работу!"</p>
+                <p class="quote-author">- Шерлок Холмс, "Знак четырех"</p>
+            </div>
+            <div class="quote-slide">
+                <p>"Вы смотрите, но вы не наблюдаете. В этом большая разница."</p>
+                <p class="quote-author">- Шерлок Холмс, "Скандал в Богемии"</p>
+            </div>
+            <div class="quote-slide">
+                <p>"Когда вы исключите невозможное, то, что останется, и будет ответом, каким бы невероятным он ни казался."</p>
+                <p class="quote-author">- Шерлок Холмс, "Знак четырех"</p>
+            </div>
+            <div class="quote-slide">
+                <p>"Мелочи бесконечно важны."</p>
+                <p class="quote-author">- Шерлок Холмс, "Дело о короне"</p>
+            </div>
+        </div>
+
+        <!-- Кнопки навигации -->
+        <div class="quote-nav">
+            <button class="quote-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="quote-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+            </div>
+            <button class="quote-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+
+            <div class="bio-content">
+                <div class="bio-timeline">
+                    <div class="bio-period">
+                        <div class="bio-year">1854</div>
+                        <div class="bio-event">
+                            <h3>Рождение и семья</h3>
+                            <p>Шерлок Холмс родился 6 января 1854 года в семье землевладельца-джентри в сельской местности Северного Райдинга Йоркшира. Его отец был потомком землевладельцев, а мать происходила из семьи французских художников. У Шерлока был старший брат Майкрофт, работавший в британском правительстве.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1872-1877</div>
+                        <div class="bio-event">
+                            <h3>Образование</h3>
+                            <p>Холмс учился в колледже, возможно, в Оксфорде или Кембридже, где проявил интерес к химии и необычным отраслям знаний. В университете он начал развивать свои дедуктивные методы. После колледжа не получил формального высшего образования, предпочтя самостоятельное изучение наук.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1878-1881</div>
+                        <div class="bio-event">
+                            <h3>Становление детектива</h3>
+                            <p>Холмс начал карьеру детектива-консультанта в Лондоне. Снимал комнаты на Монтегю-стрит, где проводил химические опыты и разрабатывал свои методы. К 1881 году он уже был известен в узких кругах как необычный специалист по решению сложных дел.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1881</div>
+                        <div class="bio-event">
+                            <h3>Встреча с Ватсоном</h3>
+                            <p>В январе 1881 года Холмс познакомился с доктором Джоном Ватсоном, который искал жилье после возвращения из Афганистана. Они стали снимать квартиру на Бейкер-стрит, 221б у миссис Хадсон. Эта встреча положила начало их многолетнему сотрудничеству и дружбе.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1881-1891</div>
+                        <div class="bio-event">
+                            <h3>Золотой период</h3>
+                            <p>За десять лет Холмс расследовал сотни дел, став легендой лондонского сыска. Среди самых известных дел этого периода: "Этюд в багровых тонах" (1887), "Знак четырех" (1888), "Скандал в Богемии" (1891). Он также написал несколько научных работ, включая монографию "О различии пепла 140 сортов табака".</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1891</div>
+                        <div class="bio-event">
+                            <h3>Схватка с Мориарти</h3>
+                            <p>В мае 1891 года Холмс столкнулся с профессором Мориарти, "Наполеоном преступного мира". Их противостояние закончилось схваткой у Рейхенбахского водопада в Швейцарии, где оба считались погибшими. На самом деле Холмс выжил, но решил остаться "мертвым" на три года, чтобы разгромить остатки сети Мориарти.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1894-1903</div>
+                        <div class="bio-event">
+                            <h3>Возвращение и новые дела</h3>
+                            <p>Вернувшись в Лондон в 1894 году, Холмс продолжил работу детектива. Этот период включает расследование дела "Собака Баскервилей" (1901-1902) и множество других сложных дел. Его слава достигла пика, к нему обращались короли и премьер-министры.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1904-1914</div>
+                        <div class="bio-event">
+                            <h3>Поздние годы деятельности</h3>
+                            <p>Холмс постепенно сокращал свою практику, принимая только самые интересные дела. Он раскрыл несколько шпионских сетей перед Первой мировой войной. В 1914 году, после дела "Его прощальный поклон", официально отошел от дел.</p>
+                        </div>
+                    </div>
+                    <div class="bio-period">
+                        <div class="bio-year">1914-1957</div>
+                        <div class="bio-event">
+                            <h3>Уход на покой</h3>
+                            <p>Холмс удалился в Суссекс, где занялся пчеловодством. Он написал "Практическое руководство по пчеловодству" и несколько философских работ. Скончался в 1957 году в возрасте 103 лет, согласно некоторым источникам, хотя точная дата смерти остается загадкой.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bio-facts">
+                    <h3>Интересные факты из жизни Холмса</h3>
+                    <div class="facts-grid">
+                        <div class="fact-card">
+                            <div class="fact-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>Несуществующий адрес</h4>
+                            <p>Во времена Холмса Бейкер-стрит заканчивалась номером 85. Адрес 221б был вымышленным. Только в 1930 году, при расширении улицы, появился дом 221, где сейчас находится музей Шерлока Холмса.</p>
+                        </div>
+                        <div class="fact-card">
+                            <div class="fact-icon">
+                                <i class="fas fa-smoking"></i>
+                            </div>
+                            <h4>Привычки и зависимости</h4>
+                            <p>Холмс курил трубку, сигары и сигареты. В периоды безделья употреблял 7%-ный раствор кокаина внутривенно, что было легально в викторианской Англии. Ватсон осуждал эту привычку, называя её единственным недостатком друга.</p>
+                        </div>
+                        <div class="fact-card">
+                            <div class="fact-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Научные работы</h4>
+                            <p>Холмс опубликовал несколько научных трудов: "О различии пепла 140 сортов табака", "Руководство по тайнописи", "Влияние профессии на форму руки", "Полифонические мотеты Лассуса", "Практическое руководство по пчеловодству".</p>
+                        </div>
+                        <div class="fact-card">
+                            <div class="fact-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h4>Личная жизнь</h4>
+                            <p>Холмс никогда не был женат. Единственной женщиной, произведшей на него впечатление, была Ирен Адлер. Он называл её "Эта женщина" и хранил её фотографию. Холмс считал, что эмоции мешают логическому мышлению.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Секция с инфографикой навыков -->
+    <section id="skills" class="infographic-section">
+        <div class="container">
+            <h2 class="section-title">Навыки и методы Холмса</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fas fa-brain"></i> Дедукция и логика</h3>
+                    <p>Способность делать точные выводы на основе наблюдений и логических умозаключений. Холмс мог восстановить цепочку событий по мельчайшим деталям, которые другие не замечали.</p>
+                    <div class="skill-details">
+                        <p><strong>Ключевой принцип:</strong> "Когда вы исключите невозможное, то, что останется, и будет ответом, каким бы невероятным он ни казался."</p>
+                        <p><strong>Известный случай:</strong> В "Этюде в багровых тонах" определил, что доктор Ватсон служил в Афганистане, по загару на запястье и осанке.</p>
+                        <p><strong>Упоминание в рассказах:</strong> Более 40 раз Холмс демонстрирует исключительные дедуктивные способности.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="deduction-bar"></div>
+                        <div class="skill-percentage" id="deduction-percent">98%</div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-eye"></i> Наблюдательность</h3>
+                    <p>Умение замечать мельчайшие детали, которые ускользают от взгляда обычного человека. Холмс мог определить род занятий, биографию и привычки человека по его внешности.</p>
+                    <div class="skill-details">
+                        <p><strong>Пример:</strong> Замечал царапины на часах, следы грязи на обуви, особенности почерка, микроскопические частицы на одежде.</p>
+                        <p><strong>Известный случай:</strong> В "Пёстрой ленте" определил способ убийства по свисту и вентиляционной решетке, заметив крюк над кроватью.</p>
+                        <p><strong>Тренировка:</strong> Холмс регулярно практиковал наблюдение, анализируя прохожих из окна на Бейкер-стрит.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="observation-bar"></div>
+                        <div class="skill-percentage" id="observation-percent">95%</div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-flask"></i> Химия и наука</h3>
+                    <p>Глубокие познания в химии, которые часто применял в своих расследованиях. Холмс оборудовал в квартире небольшую химическую лабораторию для анализа улик.</p>
+                    <div class="skill-details">
+                        <p><strong>Пример:</strong> Проводил химические анализы ядов, следов крови, почвы, пепла, чернил и других веществ.</p>
+                        <p><strong>Интересный факт:</strong> Холмс написал монографию "О различии пепла 140 сортов табака", а также работы о тайнописи и влиянии профессии на форму руки.</p>
+                        <p><strong>Научные публикации:</strong> Опубликовал 7 научных работ по криминалистике и химии.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="science-bar"></div>
+                        <div class="skill-percentage" id="science-percent">90%</div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-theater-masks"></i> Маскировка</h3>
+                    <p>Искусство перевоплощения, позволяющее растворяться в любой среде. Холмс был мастером грима и мог изменить свою внешность до неузнаваемости.</p>
+                    <div class="skill-details">
+                        <p><strong>Пример:</strong> Перевоплощался в старика, моряка, священника, рабочего, книготорговца и даже в женщину.</p>
+                        <p><strong>Известный случай:</strong> В "Скандале в Богемии" выдал себя за священника, чтобы получить информацию от Ирен Адлер.</p>
+                        <p><strong>Рекорд:</strong> В рассказе "Пустой дом" Холмс скрывался под маской старого букиниста в течение 3 лет.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="disguise-bar"></div>
+                        <div class="skill-percentage" id="disguise-percent">85%</div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-fist-raised"></i> Боевые искусства</h3>
+                    <p>Владение бартитсу (смесь бокса, джиу-джитсу и сават) и фехтованием. Холмс использовал боевые навыки для самозащиты и задержания преступников.</p>
+                    <div class="skill-details">
+                        <p><strong>Пример:</strong> Использовал при необходимости для самозащиты и задержания преступников. Обычно предпочитал решать дела интеллектом, но при необходимости действовал решительно.</p>
+                        <p><strong>Интересный факт:</strong> Бартитсу было разработано Э.У. Бартоломью, современником Конан Дойля. Холмс также был опытным боксером и фехтовальщиком.</p>
+                        <p><strong>Известный бой:</strong> Победил в поединке профессора Мориарти у Рейхенбахского водопада.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="combat-bar"></div>
+                        <div class="skill-percentage" id="combat-percent">80%</div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-music"></i> Игра на скрипке</h3>
+                    <p>Музыкальный талант, помогающий в концентрации и решении сложных задач. Холмс часто играл на скрипке Страдивари, размышляя над делами.</p>
+                    <div class="skill-details">
+                        <p><strong>Пример:</strong> Часто играл, когда размышлял над сложным делом. Иногда играл ночью, мешая спать Ватсону и соседям.</p>
+                        <p><strong>Интересный факт:</strong> Предпочитал произведения Вагнера и даже написал собственную монографию о полифонии Моцарта. Играл не только классику, но и импровизировал.</p>
+                        <p><strong>Инструмент:</strong> Скрипка работы Страдивари, подаренная ему благодарным клиентом.</p>
+                    </div>
+                    <div class="skill-level">
+                        <div class="skill-bar" id="music-bar"></div>
+                        <div class="skill-percentage" id="music-percent">75%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="cases" class="cases-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="solved-cases">0</div>
+                    <div class="stat-label">Расследованных дел</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Из них 60 при участии Ватсона, 10 самостоятельно</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="published-stories">0</div>
+                    <div class="stat-label">Опубликованных рассказов</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">4 романа и 56 рассказов в 5 сборниках</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="villains-caught">0</div>
+                    <div class="stat-label">Пойманных злодеев</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Включая профессора Мориарти и полковника Себастьяна Морана</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="success-rate">0%</div>
+                    <div class="stat-label">Успешных расследований</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Только 5 нераскрытых дел из 70</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с методами дедукции -->
+    <section id="methods" class="methods-section">
+        <div class="container">
+            <h2 class="section-title">Методы дедукции Холмса</h2>
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Научный метод</h3>
+                    <p>Холмс применял научный подход к расследованиям: сбор данных, формирование гипотез, их проверка и выводы. Он критиковал полицейских за поспешные выводы без достаточных доказательств.</p>
+                    <p><strong>Ключевой принцип:</strong> "Данные! Данные! Данные! Нельзя строить теории без фактов."</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3>Наблюдение деталей</h3>
+                    <p>"Вы смотрите, но вы не наблюдаете" - ключевой принцип Холмса. Он замечал то, что другие пропускали, считая что "мелочи бесконечно важны".</p>
+                    <p><strong>Пример:</strong> По следам колес, пеплу, положению мебели и выражению лица восстанавливал картину преступления.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Исключение невозможного</h3>
+                    <p>"Когда вы исключите невозможное, то, что останется, и будет ответом, каким бы невероятным он ни казался". Метод последовательного исключения неподходящих вариантов.</p>
+                    <p><strong>Применение:</strong> В "Собаке Баскервилей" исключил сверхъестественное объяснение и нашел реального преступника.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-mind-share"></i>
+                    </div>
+                    <h3>Эмпатия преступника</h3>
+                    <p>Холмс ставил себя на место преступника, чтобы понять его мотивы и следующий шаг. Он изучал психологию преступников, чтобы предсказывать их действия.</p>
+                    <p><strong>Цитата:</strong> "Чтобы поймать преступника, нужно думать как преступник."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с хронологией дел -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Хронология ключевых дел</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1881</div>
+                        <h3 class="timeline-title">Знакомство с Ватсоном</h3>
+                        <p>Холмс и Ватсон впервые встречаются и становятся соседями по квартире на Бейкер-стрит, 221б. Их знакомство происходит в химической лаборатории госпиталя Св. Варфоломея.</p>
+                        <p><strong>Интересный факт:</strong> Холмс сразу определил, что Ватсон был военным врачом в Афганистане.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1887</div>
+                        <h3 class="timeline-title">Этюд в багровых тонах</h3>
+                        <p>Первое дело, описанное Ватсоном. Расследование убийств в Лондоне, связанных с местью мормона. Дело начинается с трупа в заброшенном доме и таинственного слова "РАХЕ", написанного кровью.</p>
+                        <p><strong>Значение:</strong> Первая публикация о Холмсе в журнале "Beeton's Christmas Annual".</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1888</div>
+                        <h3 class="timeline-title">Знак четырех</h3>
+                        <p>Расследование исчезновения Мэри Морстэн и тайны сокровищ Агры. Дело связано с сокровищами Великого Могола и тайным обществом. Ватсон встречает свою будущую жену Мэри Морстэн.</p>
+                        <p><strong>Особенность:</strong> Впервые появляется инспектор Ателни Джонс из Скотленд-Ярда.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1891</div>
+                        <h3 class="timeline-title">Последнее дело Холмса</h3>
+                        <p>Бой с профессором Мориарти у Рейхенбахского водопада в Швейцарии. Холмс считается погибшим. Мориарти, "Наполеон преступного мира", пытается уничтожить Холмса, но оба падают с водопада.</p>
+                        <p><strong>Реакция публики:</strong> Читатели требовали возвращения Холмса, носили траурные повязки.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1894</div>
+                        <h3 class="timeline-title">Возвращение Холмса</h3>
+                        <p>Холмс возвращается в Лондон после трехлетнего отсутствия. Дело "Пустой дом". Оказывается, Холмс выжил в схватке с Мориарти и путешествовал под видом норвежского исследователя.</p>
+                        <p><strong>Разгадка:</strong> Холмс объясняет Ватсону, как ему удалось инсценировать смерть и скрываться 3 года.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1902</div>
+                        <h3 class="timeline-title">Собака Баскервилей</h3>
+                        <p>Одно из самых известных дел Холмса. Расследование смерти сэра Чарльза Баскервиля в Дартмуре. Легенда о демонической собаке, преследующей род Баскервилей.</p>
+                        <p><strong>Интересно:</strong> Действие происходит в 1889 году, до предполагаемой смерти Холмса.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1914</div>
+                        <h3 class="timeline-title">Последнее дело</h3>
+                        <p>Холмс раскрывает шпионскую сеть перед Первой мировой войной. После этого удаляется на покой в Суссекс, где занимается пчеловодством и пишет "Практическое руководство по пчеловодству".</p>
+                        <p><strong>Закат карьеры:</strong> Последнее упоминание о Холмсе в рассказе "Его прощальный поклон".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Секция с интерактивной картой Лондона -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2 class="section-title">Лондон Шерлока Холмса</h2>
+            <div class="map-container">
+                <h3 class="map-title">Интерактивная карта ключевых мест</h3>
+                <div class="london-map">
+                    <div class="map-location" data-location="baker-street">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="map-location" data-location="scotland-yard">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="map-location" data-location="opera">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <div class="map-location" data-location="bank">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="map-location" data-location="thames">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="map-location" data-location="diogenes">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="map-location" data-location="station">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <div class="map-location" data-location="british-museum">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <div class="map-location" data-location="hyde-park">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="map-location" data-location="docklands">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                </div>
+                <div class="location-info" id="baker-street-info">
+                    <h3><i class="fas fa-home"></i> Бейкер-стрит, 221б</h3>
+                    <p>Легендарный адрес квартиры Шерлока Холмса и доктора Ватсона. Здесь находилась их знаменитая гостиная с камином, где Холмс курил трубку и размышлял над делами. Квартира состояла из двух спален, гостиной и кухни.</p>
+                    <p><strong>Особенности:</strong> В гостиной хранились улики, химические реактивы, скрипка Страдивари и картотека преступлений. На стене висели портреты преступников и пуля с буквами "V.R.", выпущенная Холмсом в стену.</p>
+                    <p><strong>Упоминания:</strong> Практически во всех рассказах и романах. Сегодня по этому адресу находится музей Шерлока Холмса, открытый в 1990 году.</p>
+                    <p><strong>Интересный факт:</strong> Во времена Холмса такого адреса не существовало - Бейкер-стрит заканчивалась номером 85. Дом 221б был добавлен позже.</p>
+                </div>
+                <div class="location-info" id="scotland-yard-info">
+                    <h3><i class="fas fa-landmark"></i> Скотленд-Ярд</h3>
+                    <p>Штаб-квартира лондонской полиции. Холмс часто сотрудничал с инспекторами Лестрейдом, Грегсоном и Хопкинсом, хотя и относился к их методам с некоторым пренебрежением, называя их "официальными сыщиками".</p>
+                    <p><strong>Сотрудничество:</strong> Несмотря на критику, Холмс помогал полиции в самых сложных делах. Инспектор Лестрейд был одним из немногих полицейских, которых Холмс уважал.</p>
+                    <p><strong>Упоминания:</strong> "Этюд в багровых тонах", "Знак четырех", "Черный Питер", "Шесть Наполеонов" и другие.</p>
+                    <p><strong>Интересный факт:</strong> Название происходит от места, где в средние века останавливались шотландские короли во время визитов в Лондон.</p>
+                </div>
+                <div class="location-info" id="opera-info">
+                    <h3><i class="fas fa-theater-masks"></i> Королевский оперный театр</h3>
+                    <p>Место действия нескольких дел Холмса. В рассказе "Скандал в Богемии" Холмс и Ватсон отправились в оперу, чтобы следить за Ирен Адлер, "Этой женщиной", которая перехитрила Холмса.</p>
+                    <p><strong>Дело:</strong> Ирен Адлер хранила компрометирующие фотографии кронпринца Богемии. Холмс разработал сложный план, чтобы найти фотографии, но Адлер перехитрила его.</p>
+                    <p><strong>Упоминания:</strong> "Скандал в Богемии", "Шесть Наполеонов".</p>
+                    <p><strong>Интересный факт:</strong> Холмс сохранил фотографию Ирен Адлер как напоминание о том, что его тоже можно перехитрить.</p>
+                </div>
+                <div class="location-info" id="bank-info">
+                    <h3><i class="fas fa-university"></i> Банк Англии</h3>
+                    <p>В рассказе "Союз рыжих" банк стал местом работы одного из главных персонажей. Холмс раскрыл заговор против сотрудника банка, который был нанят для сидячей работы благодаря своим рыжим волосам.</p>
+                    <p><strong>Дело:</strong> Общество рыжеволосых нанимало мужчин с ярко-рыжими волосами для сидячей работы с хорошей оплатой. Оказалось, это было прикрытием для подготовки к ограблению банка.</p>
+                    <p><strong>Упоминания:</strong> "Союз рыжих".</p>
+                </div>
+                <div class="location-info" id="thames-info">
+                    <h3><i class="fas fa-water"></i> Река Темза</h3>
+                    <p>В нескольких делах Холмса действие происходит на Темзе или ее доках. В "Знаке четырех" погоня за преступниками происходит по реке. В "Человеке с рассеченной губой" тело находят в Темзе.</p>
+                    <p><strong>Дело:</strong> В "Знаке четырех" Холмс и Ватсон преследуют пароход "Аврора" по Темзе, чтобы найти сокровища Агры и похитителя.</p>
+                    <p><strong>Упоминания:</strong> "Знак четырех", "Человек с рассеченной губой", "Обряд дома Месгрейвов".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с галереей артефактов -->
+    <section class="artifacts-section">
+        <div class="container">
+            <h2 class="section-title">Артефакты и инструменты</h2>
+            <div class="artifacts-grid">
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Увеличительное стекло</h3>
+                        <p>Главный инструмент для изучения мельчайших деталей на месте преступления. Холмс использовал лупу с тройным увеличением, которую всегда носил с собой в кармане.</p>
+                        <p><strong>Применение:</strong> Изучение следов, волокон, почвы, отпечатков, микроскопических частиц.</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Химическая лаборатория</h3>
+                        <p>Набор для химических анализов, который Холмс использовал для исследования улик. Включал пробирки, колбы, реактивы, микроскоп и центрифугу.</p>
+                        <p><strong>Расположение:</strong> Находилась в углу гостиной на Бейкер-стрит, что часто вызывало протесты миссис Хадсон.</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-pipe"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Трубка</h3>
+                        <p>Знаменитая вислая трубка, которую Холмс курил во время размышлений. Также использовал пенковую трубку, сигары и сигареты. Хранил табак в персидской туфле.</p>
+                        <p><strong>Сорт табака:</strong> Предпочитал крепкий чёрный табак "Ship's" или "Arcadia Mixture".</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-violin"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Скрипка Страдивари</h3>
+                        <p>Дорогая скрипка, на которой Холмс играл для концентрации мыслей. Инструмент работы Антонио Страдивари (1644-1737), подаренный благодарным клиентом.</p>
+                        <p><strong>Стоимость:</strong> В современном эквиваленте около 500 000 фунтов стерлингов.</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Индекс преступлений</h3>
+                        <p>Личная картотека Холмса с информацией о тысячах преступников и преступлений. Включала биографии, методы, почерк, отпечатки и связи преступников.</p>
+                        <p><strong>Объём:</strong> Более 10 000 карточек, систематизированных по категориям и алфавиту.</p>
+                    </div>
+                </div>
+                <div class="artifact-card">
+                    <div class="artifact-img">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <div class="artifact-info">
+                        <h3>Кокаин (7%-ный раствор)</h3>
+                        <p>Стимулирующее средство, которое Холмс использовал в периоды бездействия. Вводил подкожно 3 раза в день. Ватсон осуждал эту привычку, считая её вредной.</p>
+                        <p><strong>Контекст:</strong> В викторианской Англии кокаин был легальным и продавался в аптеках как лекарство.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интерактивная секция с дедуктивной игрой -->
+    <section id="game" class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">Проверьте свою дедукцию</h2>
+            <div class="deduction-game">
+                <h3 class="game-title">Загадка: Пропавшее колье леди Уинтермиер</h3>
+                <div class="clue-container">
+                    <p class="clue-text">Леди Уинтермиер сообщила, что её драгоценное колье с рубинами и бриллиантами, стоимостью 50 000 фунтов, пропало во время приёма в её поместье в Хэмпстеде. Было всего пять гостей. Вы обнаружили следующие улики:</p>
+                    <ul>
+                        <li>На полу возле французских окон найдены следы грязи особого состава (красная глина с белым мелом)</li>
+                        <li>Один из хрустальных стаканов имеет едва заметные следы хлороформа на ободке</li>
+                        <li>Каминные часы в библиотеке остановились на 22:10, на стекле циферблата - микроскопические частицы известковой пыли</li>
+                        <li>Горничная Эмили слышала приглушенный шум из библиотеки около 22:00, но не придала значения</li>
+                        <li>На письменном столе найдена записка с символами, напоминающими масонские знаки</li>
+                        <li>Сэр Реджинальд Блэквуд, один из гостей, имеет участок земли с меловыми почвами к северу от Лондона, недалеко от Хэмпстеда</li>
+                        <li>Полковник Морарти, другой гость, имеет репутацию коллекционера драгоценностей и финансовые трудности</li>
+                        <li>Леди Уинтермиер только что увеличила страховку колья за неделю до кражи</li>
+                    </ul>
+                </div>
+                <p class="clue-text"><strong>Вопрос: Кто, скорее всего, похитил колье и каков был метод? Обратите внимание на все улики и постройте логическую цепочку.</strong></p>
+                <div class="options">
+                    <div class="option" data-answer="A">
+                        <div class="option-label">A</div>
+                        Полковник Морарти использовал хлороформ, чтобы усыпить леди Уинтермиер, и подделал масонские знаки как ложный след. Грязь он принес на обуви с улицы.
+                    </div>
+                    <div class="option" data-answer="B">
+                        <div class="option-label">B</div>
+                        Горничная Эмили подделала кражу, чтобы скрыть свою предыдущую кражу серебряных ложек, а грязь принесла с улицы. Хлороформ использовала, чтобы усыпить сторожевую собаку.
+                    </div>
+                    <div class="option" data-answer="C">
+                        <div class="option-label">C</div>
+                        Сэр Реджинальд проник через окно, использовал хлороформ на стакане леди, остановил часы чтобы создать алиби, а грязь с его участка выдала его. Масонские знаки - попытка направить подозрения на полковника Морарти, который известен как масон.
+                    </div>
+                    <div class="option" data-answer="D">
+                        <div class="option-label">D</div>
+                        Леди Уинтермиер сама спрятала колье для страховки, а все улики подстроила. Она знала о составе почвы на участке сэра Реджинальда и подбросила грязь, чтобы обвинить его.
+                    </div>
+                </div>
+                <button class="btn solution-btn" id="check-solution">Проверить решение</button>
+                <div class="result" id="result">
+                    <h3 id="result-title"></h3>
+                    <p id="result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с персонажами -->
+    <section id="characters" class="characters-section">
+        <div class="container">
+            <h2 class="section-title">Ключевые персонажи</h2>
+            <div class="character-cards">
+                <div class="character-card">
+                    <div class="character-img">
+                        <i class="fas fa-user-detective"></i>
+                    </div>
+                    <div class="character-info">
+                        <h3>Шерлок Холмс</h3>
+                        <p>Частный детектив-консультант, известный своим аналитическим складом ума и дедуктивным методом. Родился в 1854 году. Имеет старшего брата Майкрофта, который работает в правительстве. Окончил колледж, но не университет. Живет по адресу Бейкер-стрит, 221б.</p>
+                        <p><strong>Особенности:</strong> Холодный рационалист, но с чувством юмора. Играет на скрипке, курит трубку, использует кокаин в периоды бездействия.</p>
+                        <span class="character-tag">Детектив</span>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="character-info">
+                        <h3>Доктор Ватсон</h3>
+                        <p>Верный друг и биограф Холмса, врач по профессии, который сопровождает его в расследованиях. Участвовал в Англо-афганской войне, где был ранен в плечо. Женился на Мэри Морстэн и овдовел. Написав 60 рассказов о Холмсе, сделал его знаменитым.</p>
+                        <p><strong>Роль:</strong> Представляет читателя - задает вопросы, на которые Холмс дает объяснения. Часто служит "молотком" в руках Холмса.</p>
+                        <span class="character-tag">Друг и биограф</span>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div class="character-info">
+                        <h3>Профессор Мориарти</h3>
+                        <p>Гениальный преступный гений, заклятый враг Холмса, "Наполеон преступного мира". Бывший профессор математики, создавший обширную преступную сеть. Автор работы "Динамика астероида". Погиб в схватке с Холмсом у Рейхенбахского водопада.</p>
+                        <p><strong>Описание:</strong> Высокий, худой, с бледным лицом и привычкой раскачиваться вперед-назад. Имеет "ликующее выражение лица паука".</p>
+                        <span class="character-tag">Антагонист</span>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <div class="character-info">
+                        <h3>Ирен Адлер</h3>
+                        <p>Опереточная певица и авантюристка, единственная женщина, которая произвела впечатление на Холмса. Появляется в рассказе "Скандал в Богемии". Холмс называл её "Эта женщина". Была замужем за адвокатом Годфри Нортоном.</p>
+                        <p><strong>Значение:</strong> Доказала, что Холмс не непогрешим. После дела с ней Холмс хранил её фотографию как напоминание.</p>
+                        <span class="character-tag">Соперница</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Подвал -->
+<footer id="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Шерлок Холмс</h3>
+                <p>Полное интерактивное досье с элементами инфографики и интеллектуального дизайна, посвященное величайшему детективу. Сайт использует современные веб-технологии для погружения в атмосферу викторианского Лондона.</p>
+                <p class="quote">"Жизнь бесконечно страннее, чем всё, что может придумать человеческий разум."</p>
+                <p><strong>- Шерлок Холмс</strong></p>
+            </div>
+            <div class="footer-column">
+                <h3>Методы работы</h3>
+                <p>Наблюдение, дедукция, логика, научный подход и глубокие познания в различных областях. Холмс создал собственную методику расследования, сочетающую научный метод с психологическим анализом.</p>
+                <p><strong>Адрес:</strong> Бейкер-стрит, 221б, Лондон</p>
+                <p><strong>Годы активности:</strong> 1881-1914 (с перерывом 1891-1894)</p>
+                <p><strong>Создатель:</strong> Сэр Артур Конан Дойль (1859-1930)</p>
+            </div>
+<!-- Форма обратной связи -->
+<div class="footer-column">
+    <h3>Обратная связь</h3>
+    <p>Есть вопросы или предложения? Напишите нам!</p>
+    <form
+        id="feedbackForm"
+        class="feedback-form"
+        action="https://formspree.io/f/mpwvjdqv"
+        method="POST"
+    >
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Ваш Email" required>
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="form-group">
+            <textarea name="message" placeholder="Ваше сообщение..." rows="4" required></textarea>
+            <i class="fas fa-comment"></i>
+        </div>
+        <button type="submit" class="btn feedback-btn">
+            <i class="fas fa-paper-plane"></i> Отправить
+        </button>
+
+        <input type="hidden" name="_subject" value="Новое сообщение с сайта Шерлока Холмса">
+        <input type="hidden" name="_replyto" value="ajdan8017@gmail.com">
+    </form>
+    <div id="formMessage" class="form-message"></div>
+</div>
+</footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы DOM
+            const progressBar = document.getElementById('progressBar');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            const logo = document.getElementById('logo');
+            
+            // Анимация навыков
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const skillCards = document.querySelectorAll('.skill-card');
+            const skillValues = {
+                'deduction-bar': 98,
+                'observation-bar': 95,
+                'science-bar': 90,
+                'disguise-bar': 85,
+                'combat-bar': 80,
+                'music-bar': 75
+            };
+            
+            // Анимация статистики
+            const stats = {
+                'solved-cases': 70,
+                'published-stories': 60,
+                'villains-caught': 48,
+                'success-rate': 93
+            };
+            
+            // Интерактивная карта Лондона
+            const mapLocations = document.querySelectorAll('.map-location');
+            const locationInfos = document.querySelectorAll('.location-info');
+            
+            // Дедуктивная игра
+            const options = document.querySelectorAll('.option');
+            const checkSolutionBtn = document.getElementById('check-solution');
+            const resultDiv = document.getElementById('result');
+            const resultTitle = document.getElementById('result-title');
+            const resultText = document.getElementById('result-text');
+            
+            // Состояние игры
+            let selectedOption = null;
+            
+            // Прогресс-бар прокрутки
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+                
+                // Показать/скрыть кнопку "Наверх"
+                if (winScroll > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                
+                // Анимация элементов при прокрутке
+                animateOnScroll();
+            });
+            
+            // Кнопка "Наверх"
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Мобильное меню
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.querySelector('ul').classList.toggle('active');
+                this.innerHTML = mainNav.querySelector('ul').classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Логотип ведет наверх
+            logo.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Функция для проверки, виден ли элемент на экране
+            function isElementInViewport(el, offset = 0) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * (0.8 + offset) &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Анимация элементов при прокрутке
+            function animateOnScroll() {
+            document.querySelectorAll('.bio-period').forEach(period => {
+    if (isElementInViewport(period, 0.1) && !period.classList.contains('animated')) {
+        period.classList.add('animated');
+    }
+});
+
+document.querySelectorAll('.fact-card').forEach(card => {
+    if (isElementInViewport(card, -0.1) && !card.classList.contains('animated')) {
+        card.classList.add('animated');
+    }
+});
+                // Заголовки секций
+                document.querySelectorAll('.section-title').forEach(title => {
+                    if (isElementInViewport(title) && !title.classList.contains('animated')) {
+                        title.classList.add('animated');
+                    }
+                });
+                
+                // Карточки навыков
+                skillCards.forEach(card => {
+                    if (isElementInViewport(card, -0.1) && !card.classList.contains('animated')) {
+                        card.classList.add('animated');
+                        
+                        // Анимация соответствующих skill-bars
+                        const skillBar = card.querySelector('.skill-bar');
+                        if (skillBar) {
+                            const skillId = skillBar.id;
+                            const value = skillValues[skillId];
+                            setTimeout(() => {
+                                skillBar.style.width = value + '%';
+                            }, 300);
+                        }
+                    }
+                });
+                
+                // Статистика
+                document.querySelectorAll('.stat-item').forEach(stat => {
+                    if (isElementInViewport(stat, 0.1) && !stat.classList.contains('animated')) {
+                        stat.classList.add('animated');
+                        
+                        // Анимация чисел
+                        const statNumber = stat.querySelector('.stat-number');
+                        if (statNumber) {
+                            const statId = statNumber.id;
+                            if (stats[statId]) {
+                                const targetValue = stats[statId];
+                                animateValue(statNumber, 0, targetValue, 2000, statId === 'success-rate' ? '%' : '');
+                            }
+                        }
+                    }
+                });
+                
+                // Карточки методов
+                document.querySelectorAll('.method-card').forEach(card => {
+                    if (isElementInViewport(card, -0.1) && !card.classList.contains('animated')) {
+                        card.classList.add('animated');
+                    }
+                });
+                
+                // Элементы таймлайна
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    if (isElementInViewport(item, 0.1) && !item.classList.contains('animated')) {
+                        item.classList.add('animated');
+                    }
+                });
+            }
+            
+            // Функция анимации чисел
+            function animateValue(element, start, end, duration, suffix = '') {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const easeProgress = progress < 0.5 ? 
+                        2 * progress * progress : 
+                        1 - Math.pow(-2 * progress + 2, 2) / 2; // easing function
+                    
+                    const currentValue = Math.floor(easeProgress * (end - start) + start);
+                    element.textContent = currentValue + suffix;
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // Раскрытие подробностей в карточках навыков
+            skillCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+            
+            // Интерактивная карта Лондона
+            mapLocations.forEach(location => {
+                location.addEventListener('click', function() {
+                    const locationId = this.getAttribute('data-location');
+                    
+                    // Убираем активный класс со всех элементов
+                    mapLocations.forEach(loc => loc.classList.remove('active'));
+                    locationInfos.forEach(info => info.classList.remove('active'));
+                    
+                    // Добавляем активный класс к выбранному элементу
+                    this.classList.add('active');
+                    
+                    // Показываем соответствующую информацию
+                    const infoElement = document.getElementById(`${locationId}-info`);
+                    if (infoElement) {
+                        infoElement.classList.add('active');
+                        
+                        // Плавная прокрутка к информации
+                        infoElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest' 
+                        });
+                    }
+                });
+            });
+            
+            // Дедуктивная игра - выбор варианта ответа
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedOption = this.getAttribute('data-answer');
+                    
+                    // Добавляем небольшую анимацию при выборе
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+            
+            // Проверка решения в дедуктивной игре
+            checkSolutionBtn.addEventListener('click', function() {
+                if (!selectedOption) {
+                    alert('Пожалуйста, выберите вариант ответа! Используйте свои дедуктивные способности, чтобы проанализировать все улики.');
+                    return;
+                }
+                
+                // Правильный ответ - C
+                const correctAnswer = 'C';
+                
+                // Анимация кнопки
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                if (selectedOption === correctAnswer) {
+                    resultTitle.textContent = 'Браво! Вы мыслите как Шерлок Холмс!';
+                    resultText.innerHTML = `
+                        <p><strong>Ваше решение абсолютно верно:</strong> Сэр Реджинальд Блэквуд действительно виновен в краже колье леди Уинтермиер.</p>
+                        <p><strong>Объяснение дедуктивной цепочки:</strong></p>
+                        <ol>
+                            <li><strong>Грязь с мелом:</strong> Уникальный состав (красная глина с белым мелом) точно соответствует почвам на участке сэра Реджинальда к северу от Лондона. Это не обычная уличная грязь.</li>
+                            <li><strong>Хлороформ на стакане:</strong> Сэр Реджинальд добавил хлороформ в бокал леди Уинтермиер, чтобы усыпить её и беспрепятственно проникнуть в библиотеку.</li>
+                            <li><strong>Остановленные часы:</strong> Он намеренно остановил каминные часы в 22:10, чтобы создать алиби - в это время он был замечен с другими гостями в гостиной.</li>
+                            <li><strong>Известковая пыль на часах:</strong> Микроскопические частицы известковой пыли на стекле циферблата попали с его одежды, когда он наклонялся, чтобы остановить часы.</li>
+                            <li><strong>Масонские знаки:</strong> Сэр Реджинальд подбросил записку с масонскими символами, чтобы направить подозрения на полковника Морарти, который известен как масон высокого ранга.</li>
+                            <li><strong>Шум в библиотеке:</strong> Горничная слышала шум в 22:00, когда сэр Реджинальд проникал через окно. Он действовал быстро, зная, что леди усыплена.</li>
+                        </ol>
+                        <p><strong>Почему не другие подозреваемые:</strong></p>
+                        <ul>
+                            <li><strong>Полковник Морарти</strong> не стал бы оставлять такие очевидные улики и имел более изощренные методы.</li>
+                            <li><strong>Горничная Эмили</strong> не имела бы доступа к хлороформу и не знала бы о составе почвы на участке сэра Реджинальда.</li>
+                            <li><strong>Леди Уинтермиер</strong> не стала бы использовать хлороформ на собственном стакане и рисковать здоровьем ради страховки.</li>
+                        </ul>
+                        <p style="margin-top: 20px; font-style: italic;">"Когда вы исключите невозможное, то, что останется, и будет ответом, каким бы невероятным он ни казался." - Шерлок Холмс</p>
+                    `;
+                    resultDiv.className = 'result correct';
+                } else {
+                    resultTitle.textContent = 'Почти угадали, но не совсем...';
+                    resultText.innerHTML = `
+                        <p>Правильный ответ: <strong>Вариант C</strong>.</p>
+                        <p><strong>Ключевые ошибки в других вариантах:</strong></p>
+                        <ul>
+                            <li><strong>Вариант A (Полковник Морарти):</strong> Морарти был бы более изобретателен и не оставил бы таких очевидных следов. Как опытный преступник, он знал бы, что грязь с уникальным составом может его выдать. Кроме того, он не стал бы использовать такой примитивный метод с хлороформом.</li>
+                            <li><strong>Вариант B (Горничная Эмили):</strong> Горничная не имела бы доступа к хлороформу (сильнодействующему химикату) и не знала бы о специфическом составе почвы на участке сэра Реджинальда. Также у неё не было бы мотива для такой сложной инсценировки.</li>
+                            <li><strong>Вариант D (Леди Уинтермиер):</strong> Леди не стала бы использовать хлороформ на собственном стакане, рискуя здоровьем. Также она не смогла бы точно воспроизвести состав почвы с участка сэра Реджинальда.</li>
+                        </ul>
+                        <p><strong>Ключевая улика, которую вы упустили:</strong> Специфический состав грязи (красная глина с белым мелом) точно соответствует почвам на участке сэра Реджинальда. Это не случайная уличная грязь, а уникальный "почвенный отпечаток".</p>
+                        <p style="margin-top: 20px;"><strong>Совет от Шерлока Холмса:</strong> "Мелочи бесконечно важны. Всегда обращайте внимание на уникальные, а не на общие детали."</p>
+                    `;
+                    resultDiv.className = 'result incorrect';
+                }
+                
+                resultDiv.style.display = 'block';
+                
+                // Плавная прокрутка к результату
+                setTimeout(() => {
+                    resultDiv.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest' 
+                    });
+                }, 100);
+            });
+            
+            // Плавная прокрутка к разделам при клике на ссылки в меню
+            document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            // Закрыть мобильное меню, если открыто
+                            if (mainNav.querySelector('ul').classList.contains('active')) {
+                                mainNav.querySelector('ul').classList.remove('active');
+                                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                            }
+                            
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Инициализация при загрузке
+            function init() {
+                // Автовыбор первого места на карте Лондона
+                if (mapLocations.length > 0) {
+                    mapLocations[0].click();
+                }
+                
+                // Запуск анимации при загрузке
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('scroll'));
+                }, 500);
+                
+                // Добавить индикаторы выбора для опций в игре
+                options.forEach((option, index) => {
+                    const labels = ['A', 'B', 'C', 'D'];
+                    if (!option.querySelector('.option-label')) {
+                        const label = document.createElement('div');
+                        label.className = 'option-label';
+                        label.textContent = labels[index];
+                        option.prepend(label);
+                    }
+                });
+            }
+            
+            // Запуск инициализации
+            init();
+        });
+        // Цитатный слайдер
+const quoteSlides = document.querySelectorAll('.quote-slide');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.querySelector('.quote-prev');
+const nextBtn = document.querySelector('.quote-next');
+let currentSlide = 0;
+let slideInterval;
+
+// Функция показа слайда
+function showSlide(n) {
+    // Скрываем все слайды
+    quoteSlides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    // Убираем активный класс со всех точек
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+
+    // Корректируем индекс слайда
+    currentSlide = (n + quoteSlides.length) % quoteSlides.length;
+
+    // Показываем текущий слайд
+    quoteSlides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+// Функция следующего слайда
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+// Функция предыдущего слайда
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// Автопрокрутка слайдов
+function startSlideShow() {
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+function stopSlideShow() {
+    clearInterval(slideInterval);
+}
+
+// Обработчики событий
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    stopSlideShow();
+    startSlideShow();
+});
+
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    stopSlideShow();
+    startSlideShow();
+});
+
+// Навигация по точкам
+dots.forEach(dot => {
+    dot.addEventListener('click', function() {
+        const slideIndex = parseInt(this.getAttribute('data-slide'));
+        showSlide(slideIndex);
+        stopSlideShow();
+        startSlideShow();
+    });
+});
+
+// Пауза при наведении на слайдер
+const quoteSlider = document.querySelector('.quote-slider');
+quoteSlider.addEventListener('mouseenter', stopSlideShow);
+quoteSlider.addEventListener('mouseleave', startSlideShow);
+
+// Инициализация слайдера
+showSlide(0);
+startSlideShow()
+;
+// Обработка формы обратной связи через Formspree
+const feedbackForm = document.getElementById('feedbackForm');
+const formMessage = document.getElementById('formMessage');
+
+feedbackForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Получаем значения полей
+    const email = this.querySelector('[name="email"]').value.trim();
+    const name = this.querySelector('[name="name"]').value.trim();
+    const message = this.querySelector('[name="message"]').value.trim();
+
+    // Валидация
+    let isValid = true;
+
+    // Сброс предыдущих ошибок
+    document.querySelectorAll('.form-error').forEach(el => {
+        el.classList.remove('form-error');
+    });
+
+    // Валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        this.querySelector('[name="email"]').classList.add('form-error');
+        isValid = false;
+    }
+
+    // Валидация имени (минимум 2 символа)
+    if (name.length < 2) {
+        this.querySelector('[name="name"]').classList.add('form-error');
+        isValid = false;
+    }
+
+    // Валидация сообщения (минимум 10 символов)
+    if (message.length < 10) {
+        this.querySelector('[name="message"]').classList.add('form-error');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        formMessage.textContent = 'Пожалуйста, исправьте ошибки в форме.';
+        formMessage.className = 'form-message error';
+        formMessage.style.display = 'block';
+        return;
+    }
+
+    // Показываем загрузку
+    const submitBtn = this.querySelector('.feedback-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+    submitBtn.disabled = true;
+
+    try {
+        // Отправка формы через Fetch API
+        const formData = new FormData(this);
+
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // Успешная отправка
+            formMessage.textContent = 'Спасибо! Ваше сообщение отправлено. Мы ответим вам в ближайшее время.';
+            formMessage.className = 'form-message success';
+            formMessage.style.display = 'block';
+
+            // Очистка формы
+            this.reset();
+
+            // Анимация кнопки
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Отправлено!';
+            submitBtn.style.backgroundColor = '#2e7d32';
+            submitBtn.style.borderColor = '#2e7d32';
+
+            // Возвращаем кнопку в исходное состояние через 3 секунды
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.backgroundColor = '';
+                submitBtn.style.borderColor = '';
+                submitBtn.disabled = false;
+            }, 3000);
+        } else {
+            // Ошибка отправки
+            formMessage.textContent = 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.';
+            formMessage.className = 'form-message error';
+            formMessage.style.display = 'block';
+
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    } catch (error) {
+        // Сетевая ошибка
+        formMessage.textContent = 'Ошибка сети. Пожалуйста, проверьте подключение к интернету.';
+        formMessage.className = 'form-message error';
+        formMessage.style.display = 'block';
+
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
+
+// Анимация при фокусе на полях формы
+document.querySelectorAll('.form-group input, .form-group textarea').forEach(field => {
+    field.addEventListener('focus', function() {
+        this.parentElement.querySelector('i').style.color = '#d4af37';
+    });
+
+    field.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+            this.parentElement.querySelector('i').style.color = '#5a4a3a';
+        }
+    });
+
+    // Убираем класс ошибки при вводе
+    field.addEventListener('input', function() {
+        this.classList.remove('form-error');
+        const formMessage = document.getElementById('formMessage');
+        if (formMessage) {
+            formMessage.style.display = 'none';
+        }
+    });
+});
+    </script>
+
+</body>
+</html>
+<nav id="mainNav">
+    <ul>
+        <li><a href="#biography"><i class="fas fa-user"></i> Биография</a></li>
+        <li><a href="#skills"><i class="fas fa-brain"></i> Навыки</a></li>
+        <li><a href="#methods"><i class="fas fa-search"></i> Методы</a></li>
+        <li><a href="#timeline"><i class="fas fa-history"></i> Хронология</a></li>
+        <li><a href="#map"><i class="fas fa-map-marked-alt"></i> Лондон</a></li>
+        <li><a href="#game"><i class="fas fa-puzzle-piece"></i> Дедукция</a></li>
+        <li><a href="#characters"><i class="fas fa-users"></i> Персонажи</a></li>
+    </ul>
+</nav>
